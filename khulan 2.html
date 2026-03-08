@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Mart 8 Surprise</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+background:linear-gradient(#ff69b4,#ff8fcf);
+font-family:Arial;
+text-align:center;
+overflow:hidden;
+color:white;
+}
+
+/* button */
+
+button{
+padding:16px 35px;
+font-size:22px;
+border:none;
+border-radius:14px;
+background:#ff1493;
+color:white;
+cursor:pointer;
+margin-top:20px;
+box-shadow:0 0 15px rgba(0,0,0,0.3);
+}
+
+/* pulse */
+
+#startBtn{
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.1);}
+100%{transform:scale(1);}
+}
+
+/* text */
+
+#message{
+display:none;
+max-width:520px;
+font-size:22px;
+line-height:1.6;
+white-space:pre-line;
+}
+
+#continueBtn{
+display:none;
+}
+
+#videoSection{
+display:none;
+flex-direction:column;
+align-items:center;
+}
+
+/* sakura */
+
+.sakura{
+position:absolute;
+top:-20px;
+width:18px;
+height:18px;
+background:pink;
+border-radius:50%;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+to{
+transform:translateY(100vh) rotate(360deg);
+opacity:0;
+}
+}
+
+/* spark */
+
+.spark{
+position:absolute;
+width:4px;
+height:4px;
+background:white;
+border-radius:50%;
+animation:spark 4s infinite;
+}
+
+@keyframes spark{
+0%{opacity:0;}
+50%{opacity:1;}
+100%{opacity:0;}
+}
+
+/* hearts */
+
+.heart{
+position:absolute;
+font-size:26px;
+animation:fly 3s forwards;
+}
+
+@keyframes fly{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-400px);opacity:0;}
+}
+
+</style>
+</head>
+
+<body>
+
+<button id="startBtn">End darna uu</button>
+
+<div id="message"></div>
+
+<button id="continueBtn">Urgeljluuleh</button>
+
+<div id="videoSection">
+
+<button onclick="openVideo()">Chinii sonsdog duu 🎵</button>
+
+<button onclick="hearts()">Durtai bolchloo ❤️</button>
+
+</div>
+
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_8c6e4e7b07.mp3">
+</audio>
+
+<audio id="ding">
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b9e4c02.mp3">
+</audio>
+
+<script>
+
+const startBtn=document.getElementById("startBtn")
+const message=document.getElementById("message")
+const continueBtn=document.getElementById("continueBtn")
+const videoSection=document.getElementById("videoSection")
+const music=document.getElementById("music")
+const ding=document.getElementById("ding")
+
+const text=`Мартын 8-ны мэнд хүргэе 🌸
+
+Чамтай танилцсан нь надад үнэхээр таатай санагддаг.
+Танилцаад удаагүй ч гэсэн чи дулаахан мэдрэмж төрүүлдэг.
+
+Өнөөдөр чиний өдөр аз жаргал,
+инээмсэглэлээр дүүрэн өнгөрөөсэй гэж хүсэж байна.
+
+Цаашдаа илүү их танилцаж,
+илүү олон сайхан мөчийг хамт өнгөрүүлэх
+боломж бидэнд гарна гэж найдаж байна. 💐`
+
+startBtn.onclick=()=>{
+
+startBtn.style.display="none"
+
+music.play()
+
+message.style.display="block"
+
+typeText()
+
+sakura()
+
+sparkles()
+
+}
+
+function typeText(){
+
+let i=0
+
+function typing(){
+
+if(i<text.length){
+
+message.innerHTML+=text.charAt(i)
+
+i++
+
+setTimeout(typing,40)
+
+}
+
+else{
+
+ding.play()
+
+setTimeout(()=>{
+continueBtn.style.display="block"
+},1000)
+
+}
+
+}
+
+typing()
+
+}
+
+continueBtn.onclick=()=>{
+
+message.style.display="none"
+
+continueBtn.style.display="none"
+
+videoSection.style.display="flex"
+
+}
+
+function openVideo(){
+
+window.location.href="https://youtu.be/SgHldVP0aak?si=3xA4g7UfkDUPFUWQ"
+
+}
+
+function sakura(){
+
+for(let i=0;i<35;i++){
+
+let flower=document.createElement("div")
+
+flower.className="sakura"
+
+flower.style.left=Math.random()*100+"vw"
+
+flower.style.animationDuration=(Math.random()*4+3)+"s"
+
+document.body.appendChild(flower)
+
+}
+
+}
+
+function sparkles(){
+
+for(let i=0;i<40;i++){
+
+let s=document.createElement("div")
+
+s.className="spark"
+
+s.style.left=Math.random()*100+"vw"
+
+s.style.top=Math.random()*100+"vh"
+
+document.body.appendChild(s)
+
+}
+
+}
+
+function hearts(){
+
+for(let i=0;i<20;i++){
+
+let heart=document.createElement("div")
+
+heart.className="heart"
+
+heart.innerHTML="❤️"
+
+heart.style.left=Math.random()*100+"vw"
+
+heart.style.top="60vh"
+
+document.body.appendChild(heart)
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
