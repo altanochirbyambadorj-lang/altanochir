@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Mart 8 💐</title>
+
+<style>
+
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+background:#ff69b4;
+font-family:Arial;
+text-align:center;
+color:white;
+overflow:hidden;
+}
+
+/* button */
+
+button{
+padding:18px 35px;
+font-size:22px;
+border:none;
+border-radius:15px;
+background:#ff1493;
+color:white;
+cursor:pointer;
+box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+/* second page */
+
+#page2{
+display:none;
+}
+
+/* youtube link */
+
+#yt{
+display:none;
+margin-top:20px;
+font-size:20px;
+color:white;
+text-decoration:none;
+}
+
+/* restart button */
+
+#restart{
+display:none;
+margin-top:25px;
+}
+
+/* falling flowers */
+
+.flower{
+position:absolute;
+top:-50px;
+font-size:24px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+
+0%{
+transform:translateY(-50px);
+opacity:1;
+}
+
+100%{
+transform:translateY(110vh);
+opacity:0;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="page1">
+<button onclick="start()">Энд дарна уу</button>
+</div>
+
+<div id="page2">
+
+<h1>
+Сайн уу сайхан бүсгүй минь<br>
+Мартын 8-ийн мэнд хүргэе ❤
+</h1>
+
+<a id="yt" href="https://youtu.be/CRSYNKasuq0?si=bU8X3FcSiFBZA7-p" target="_blank">
+🎵 Энд дарж дуу сонсоорой
+</a>
+
+<br>
+
+<button id="restart" onclick="restart()">Дахин эхлүүлэх</button>
+
+</div>
+
+<script>
+
+/* page switch */
+
+function start(){
+
+document.getElementById("page1").style.display="none";
+document.getElementById("page2").style.display="block";
+
+setTimeout(()=>{
+document.getElementById("yt").style.display="block";
+},3000);
+
+setTimeout(()=>{
+document.getElementById("restart").style.display="inline-block";
+},7000);
+
+}
+
+/* restart */
+
+function restart(){
+
+document.getElementById("page2").style.display="none";
+document.getElementById("page1").style.display="block";
+
+document.getElementById("yt").style.display="none";
+document.getElementById("restart").style.display="none";
+
+}
+
+/* falling flowers generator */
+
+for(let i=0;i<25;i++){
+
+let flower=document.createElement("div");
+
+flower.className="flower";
+
+flower.innerHTML="🌸";
+
+flower.style.left=Math.random()*100+"%";
+
+flower.style.animationDuration=(5+Math.random()*5)+"s";
+
+flower.style.fontSize=(20+Math.random()*20)+"px";
+
+document.body.appendChild(flower);
+
+}
+
+</script>
+
+</body>
+</html>
